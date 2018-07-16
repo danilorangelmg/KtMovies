@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.ktmovies"
+        minSdkVersion 22
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'API_KEY', '"d272326e467344029e68e3c4ff0b4059"'
+        buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext{
+    supportLibraryVersion = '27.1.1'
+    RetrofitVersion = '2.4.0'
+    okHttp3Version = '3.8.1'
+    gsonVersion = '2.8.2'
+    daggerVersion = '2.12'
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "com.squareup.retrofit2:retrofit:$RetrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$RetrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation "com.google.dagger:dagger:$daggerVersion"
+
+    kapt "com.google.dagger:dagger-compiler:2.12"
+    kapt "com.jakewharton:butterknife-compiler:8.6.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
